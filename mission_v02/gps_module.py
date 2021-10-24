@@ -9,14 +9,15 @@ class GpsModule:
         if data[0:6] == "$GPGGA":
             sdata = data.split(",")
             if sdata[2] == '' :
-                print("no satellite data available")
+                #print("no satellite data available")
                 return
-            time = sdata[1][0:2] + ":" + sdata[1][2:4] + ":" + sdata[1][4:6]
-            latitude = self.decode_coordinates(sdata[2], sdata[3])
-            longitude = self.decode_coordinates(sdata[4], sdata[5])
-            altSeaLevel = sdata[9] #Antenna altitude above/below mean sea level
+            #print("Obliczanie")
+            self.time = sdata[1][0:2] + ":" + sdata[1][2:4] + ":" + sdata[1][4:6]
+            self.latitude = self.decode_coordinates(sdata[2], sdata[3])
+            self.longitude = self.decode_coordinates(sdata[4], sdata[5])
+            self.altSeaLevel = sdata[9] #Antenna altitude above/below mean sea level
 
-            print(f'Time - {time} Coordinates - {latitude} {longitude} H.A.S {altSeaLevel}')
+            #print(f'Time - {self.time} Coordinates - {self.latitude} {self.longitude} H.A.S {self.altSeaLevel}')
 
     def decode_coordinates(self, coordinates, direction):
         coord = coordinates.split(".")
